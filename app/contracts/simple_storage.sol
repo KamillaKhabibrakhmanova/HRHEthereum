@@ -32,10 +32,12 @@ contract MeshWall {
     //     sendMessage("_I donated!_");
     // }
 
-    function sendMessage(bytes32 message) {
+    function sendMessage(bytes32 message) returns (bytes32) {
         messageCount++;
 
         messages.push(message);
+
+        return message;
 
         // Fire event
         newMessage(messageCount);

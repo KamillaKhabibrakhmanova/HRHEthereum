@@ -2,8 +2,8 @@ $(document).ready(function() {
 
   $("button.set").click(function() {
     var value = $("input.text").val();
-    MeshWall.sendMessage(value);
-    console.log('send new message to blockchain', val);
+    var valz = MeshWall.sendMessage(value);
+    console.log('send new message to blockchain', valz);
   });
 
   $("button.get-all").click(function() {
@@ -13,7 +13,6 @@ $(document).ready(function() {
       return web3.toAscii(message);
     });
     console.log('messages return', messageStrings);
-    $(".value").html(value.join(', \n'));
   });
 
 });
