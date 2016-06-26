@@ -8,10 +8,12 @@ $(document).ready(function() {
 
   $("button.get-all").click(function() {
     var messages = MeshWall.getMessages();
-    console.log('messages', messages)
+    console.log('messages', messages);
     var messageStrings = messages.map(function(message){
-      return web3.toAscii(message);
+      var messageString = web3.toAscii(message);
+      return '<p>' + messageString + '</p>';
     });
+    $("#results").html(messageStrings.reverse().join(''));
     console.log('messages return', messageStrings);
   });
 
