@@ -12,7 +12,7 @@ contract MeshWall {
     string public category;
 
     // Message storage:
-    string[] public messages;
+    bytes32[] public messages;
     uint public messageCount;
 
     // Events:
@@ -32,8 +32,8 @@ contract MeshWall {
     //     sendMessage("_I donated!_");
     // }
 
-    function sendMessage(string message) {
-        messageCount ++;
+    function sendMessage(bytes32 message) {
+        messageCount++;
 
         messages.push(message);
 
@@ -43,17 +43,16 @@ contract MeshWall {
 
     //always returns 0 or 1
     function getMessageLength() constant returns (uint) {
-        messageCount ++;
-        return messageCount ;
+        return messages.length;
     }
 
     //doesn't work
-    function getMessages() returns (bytes32[] messages) {
+    function getMessages() constant returns (bytes32[]) {
         return messages;
     }
 
-    function getMessage() returns (string) {
-        return messages[0];
+    function getMessage(uint messageId) returns (bytes32) {
+        return messages[messageId];
     }
 
     // Only the owner of the site can do certain things
