@@ -6,8 +6,8 @@ $(document).ready(function() {
   });
 
   $("button.get").click(function() {
-    var value = MeshWall.getMessageLength().toNumber();
-    console.log('value', value);
+    var value = MeshWall.getMessage();
+    console.log('value', web3.toAscii(value));
     $(".value").html(value);
   });
 

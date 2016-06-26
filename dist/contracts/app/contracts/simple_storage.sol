@@ -19,41 +19,41 @@ contract MeshWall {
     event newMessage(uint indexed messageId);
 
     // Public decentralized message board with donations and pay-to-promote
-    function EtheriumWall(string newCategory) {
-        category = newCategory;
-        owner = msg.sender;
-    }
+    // function EtheriumWall(string newCategory) {
+    //     category = newCategory;
+    //     owner = msg.sender;
+    // }
 
-    function() {
-        // Catcher function, we'll presume that this kind user is donating if they have
-        // sent Ether:
-        if(msg.value == 0) throw;
+    // function() {
+    //     // Catcher function, we'll presume that this kind user is donating if they have
+    //     // sent Ether:
+    //     if(msg.value == 0) throw;
 
-        sendMessage("_I donated!_");
-    }
+    //     sendMessage("_I donated!_");
+    // }
 
     function sendMessage(string message) {
+        messageCount ++;
 
-        // Get the ID of the new message to insert
-        messageCount = messages.length;
-        messageCount += 1;
-
-        messages[messageCount] = message;
+        messages.push(message);
 
         // Fire event
         newMessage(messageCount);
     }
 
-    function getMessageLength() constant returns (uint retVal) {
+    //always returns 0 or 1
+    function getMessageLength() constant returns (uint) {
+        messageCount ++;
         return messageCount ;
     }
 
+    //doesn't work
     function getMessages() returns (bytes32[] messages) {
-        var res = string[];
-        for (var i = 0; i < messageCount; i++) {
-            res.push(messages[i].message);
-        }
-        return res;
+        return messages;
+    }
+
+    function getMessage() returns (string) {
+        return messages[0];
     }
 
     // Only the owner of the site can do certain things
